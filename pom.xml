@@ -20,15 +20,9 @@
             <id>github-releases</id>
             <url>http://oss.sonatype.org/content/repositories/github-releases/</url>
         </repository>
-
         <repository>
-            <id>central</id>
-            <url>http://repo.maven.apache.org/maven2/</url>
-        </repository>
-
-        <repository>
-            <id>repo.maven.apache.org</id>
-            <url>http://repo.maven.apache.org/maven2</url>
+            <id>mirrors.ibiblio.org</id>
+            <url>http://mirrors.ibiblio.org/maven2/</url>
         </repository>
 
     </repositories>
@@ -154,6 +148,16 @@
             <groupId>ognl</groupId>
             <artifactId>ognl</artifactId>
             <version>3.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>17.0</version>
         </dependency>
     </dependencies>
     <build>

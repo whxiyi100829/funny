@@ -1,72 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 注意！SpringMVC的配置文件使用的是mvc命名空间 -->
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:util="http://www.springframework.org/schema/util"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-	<!--<util:properties id="mvcProp"
-		location="classpath:mvc-prop.properties" />-->
+    <!--<util:properties id="mvcProp"
+        location="classpath:mvc-prop.properties" />-->
 
-	<annotation-driven>
-		<message-converters register-defaults="true">
-			<!-- @ResponseBody乱码问题，将StringHttpMessageConverter的默认编码设为UTF-8 -->
-			<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
-				<beans:constructor-arg value="UTF-8" />
-			</beans:bean>
-			<!-- Hibernate lazy vs jackson问题 -->
-			<!-- 默认是utf-8编码，不需要额外指定，不像StringHttpMessageConverter. -->
-			<!--<beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-				<beans:property name="objectMapper">
-					<beans:bean class="com.app.lgr.utils.HibernateAwareObjectMapper" />
-				</beans:property>
-				<beans:property name="supportedMediaTypes">
-	                <beans:list>
-	                    <beans:value>application/json</beans:value>
-	                    <beans:value>text/json</beans:value>
-	                </beans:list>
-            	</beans:property>
-			</beans:bean>-->
-		</message-converters>
-	</annotation-driven>
+    <annotation-driven>
+        <message-converters register-defaults="true">
+            <!-- @ResponseBody乱码问题，将StringHttpMessageConverter的默认编码设为UTF-8 -->
+            <beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <beans:constructor-arg value="UTF-8"/>
+            </beans:bean>
+            <!-- Hibernate lazy vs jackson问题 -->
+            <!-- 默认是utf-8编码，不需要额外指定，不像StringHttpMessageConverter. -->
+            <!--<beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <beans:property name="objectMapper">
+                    <beans:bean class="com.app.lgr.utils.HibernateAwareObjectMapper" />
+                </beans:property>
+                <beans:property name="supportedMediaTypes">
+                    <beans:list>
+                        <beans:value>application/json</beans:value>
+                        <beans:value>text/json</beans:value>
+                    </beans:list>
+                </beans:property>
+            </beans:bean>-->
+        </message-converters>
+    </annotation-driven>
 
-	<!-- 自动扫描且只扫描@Controller & @ControllerAdvice -->
-	<context:component-scan base-package="com.have.fun.controller"
-		use-default-filters="false">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
-		<context:include-filter type="annotation"
-			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
-	</context:component-scan>
+    <!-- 自动扫描且只扫描@Controller & @ControllerAdvice -->
+    <context:component-scan base-package="com.have.fun.controller"
+                            use-default-filters="false">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
 
-	<!-- 静态资源 -->
-	<!--<resources mapping="/upload/**" location="/upload/" />-->
-	<!--<resources mapping="/static/**" location="/static/" />-->
+    <!-- 静态资源 -->
+    <!--<resources mapping="/upload/**" location="/upload/" />-->
+    <!--<resources mapping="/static/**" location="/static/" />-->
 
-	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
-	<default-servlet-handler />
+    <!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
+    <default-servlet-handler/>
 
-	<!-- 定义无需Controller的url<->view直接映射 -->
-	<!-- 首页-->
-	<view-controller path="/" view-name="index" />
+    <!-- 定义无需Controller的url<->view直接映射 -->
+    <!-- 首页-->
+    <view-controller path="/" view-name="index"/>
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp  -->
-	<beans:bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
+    <!-- Resolves views selected for rendering by @Controllers to .jsp  -->
+    <beans:bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <beans:property name="prefix" value="/"/>
+        <beans:property name="suffix" value=".jsp"/>
+    </beans:bean>
 
-	<beans:bean
-		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<beans:property name="exceptionMappings">
-			<beans:props>
-				<beans:prop key="java.lang.Throwable">error/500</beans:prop>
-			</beans:props>
-		</beans:property>
-	</beans:bean>
+    <beans:bean
+            class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <beans:property name="exceptionMappings">
+            <beans:props>
+                <beans:prop key="java.lang.Throwable">error/500</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean id="resourceContext" class="com.have.fun.utils.ResourceContext" factory-method="getInstance"/>
+    <beans:bean id="voteItemService" class="com.have.fun.service.impl.VoteItemServiceImpl">
+        <beans:property name="resourceContext" ref="resourceContext"/>
+    </beans:bean>
 </beans:beans>

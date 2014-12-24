@@ -15,12 +15,14 @@
 	<description>Spring Root Container</description>
 
 	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-	<context:component-scan base-package="com.have.fun.*">
+	<!--<context:component-scan base-package="com.have.fun.*">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
-	</context:component-scan>
+	</context:component-scan>-->
+
+    <context:component-scan base-package="com.have.fun.*"/>
 
 
 	<!-- 定义受环境影响易变的变量 -->

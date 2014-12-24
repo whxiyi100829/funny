@@ -1,0 +1,229 @@
+#top-nav ul{
+	width: 200px;
+	margin: 0 auto;
+	float:none;
+}
+#top-nav li{float:left;}
+#top-nav li a{
+	padding-top: 19.5px !important;
+	padding-bottom: 19.5px !important;
+}
+
+
+#content-wrapper {
+	padding: 0 8px 0 8px;;
+}
+
+#category {
+    margin: 16px 0;
+}
+#category li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 4px;
+}
+#category a {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.basic-info{color: #999;}
+.basic-info  td.info-item {text-align:right;}
+.basic-info td {
+    padding: 4px 8px;
+	border-top: none!important;
+}
+
+
+
+#orderby>*,.searchby>* {
+    float: left;
+    margin: 0 4px;
+}
+#orderby {
+    overflow: hidden;
+    width: 230px;
+    margin: 0 auto;
+}
+#orderby label,.searchby label {
+    line-height: 34px;
+}
+
+
+h1.title {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+h3.title {
+    text-align: center;
+}
+
+.vote-tips p{
+    color: #999;
+    text-align: center;
+}
+
+
+.vote-desc {
+    word-wrap: break-word;
+    line-height: normal;
+}
+
+.vote-desc img {
+    height: auto;
+    /*width: 100%;*/
+    max-width: 100%;
+}
+p{
+	font-size:14px;
+}
+.intro{
+	color: #999;	
+}
+
+pre{
+	padding: 0;
+	border: none;
+	background: hsla(0, 0%, 0%, 0);
+	color:hsl(210, 29%, 24%);
+}
+label{
+	font-weight: normal;
+}
+h1.title a {
+    float: right;
+}
+
+.movie-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.movie-list li a{
+	display:block;
+	text-align: center;
+}
+.movie-list li {
+    float:left;
+    padding-left: 24px;
+    cursor:pointer;
+}
+
+.movie-list li img {
+    /*min-width: 100%;*/
+    max-width:100%;
+}
+.movie-list span {
+    display: block;
+    margin-top:4px;
+    margin-bottom:12px;
+}
+.movie-list{
+	margin-left: -24px;
+}
+
+.movie-list li {
+	width:50%;
+}
+@media (min-width: 480px) and (max-width: 768px){
+	.movie-list li {
+		width:33%;
+	}	
+}
+@media (min-width: 768px) and (max-width: 992px){
+	.movie-list li {
+		width:25%;
+	}	
+}
+
+@media (min-width: 992px){
+	.movie-list li {
+		width:20%;
+	}	
+}
+
+/*game */
+#game-list {
+    margin: 12px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+#game-list img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 16px;
+    top: 16px;
+}
+#game-list li {
+    position: relative;
+    padding: 16px 0 0 136px;;
+    height: 133px;
+    border-bottom: solid 1px hsl(0, 0%, 87%);
+    cursor: pointer;
+}
+#game-list li:hover{background: hsl(0, 0%, 95%);}
+#game-list h1.title {
+    padding: 0 0 4px 0;
+    margin: 0;
+}
+#game-list label {
+    font-weight: normal;
+    color: #999;
+    cursor: pointer;
+}
+#game-list .score {
+    color: rgb(233, 37, 37);
+    display: block;
+    font-weight: bold;
+    font-size: 29px;
+    margin-bottom: 16px;
+}
+#game-list .download{
+	position: absolute;
+	right: 16px;
+	top: 50%;
+	margin-top: -23px;
+}
+
+/* book */
+#book-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 12px;
+}
+#book-list li {
+    border-bottom: solid 1px #ddd;
+    padding: 12px 8px;
+    cursor: pointer;
+}
+#book-list p {
+    margin: 0;
+}
+#book-list li:hover {
+    background: hsl(0, 0%, 95%);
+}
+#book-list h1 {
+    margin: 0 0 12px 0;
+}
+
+/*global tip*/
+#global-tip{
+	background-color:hsl(346, 75%, 65%);
+	border-radius:0;
+	color:white;
+	font-size:12px;
+	position:fixed;
+	right:16px;
+	padding:2px 10px;
+	bottom:16px;
+	opacity:0;
+	transition: opacity 1s;
+}
+
+/*search result*/
+#no-result-tip{
+	margin-top:16px;
+}
