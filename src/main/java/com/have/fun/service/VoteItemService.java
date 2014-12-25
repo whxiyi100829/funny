@@ -11,4 +11,8 @@ import java.util.List;
  */
 public interface VoteItemService {
     List<VoteItem> getVoteItems();
+
+    Integer getRecordsById(Integer id);
+
+    void increaseRecords(Integer chkId);
 }

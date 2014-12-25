@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -27,6 +28,7 @@ public class IndexController {
     VoteItemService voteItemService;
 
 
+
     @RequestMapping(value = "index", method = { RequestMethod.POST,RequestMethod.GET })
     public String index(HttpServletRequest request) {
         LOGGER.info(String.format("user logout system"));
@@ -34,12 +36,34 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping(value = "show", method = {RequestMethod.GET})
-    public String show(HttpServletRequest request, ModelMap modelMap) {
-        List<VoteItem> voteItems = voteItemService.getVoteItems();
-        modelMap.put("items", voteItems);
+    @RequestMapping(value = "show", method = {RequestMethod.GET, RequestMethod.POST})
+    public String show(HttpServletRequest request, ModelMap modelMap, @RequestParam (value = "voteChecks", required = false) Integer[] voteChecks
+                       ) {
+        if (voteChecks != null && voteChecks.length > 0) {
+            for (Integer chkId : voteChecks) {
+                voteItemService.increaseRecords(chkId);
+            }
+            List<VoteItem> voteItems = voteItemService.getVoteItems();
+            int totalCount = 0;
+            for (VoteItem voteItem : voteItems) {
+                int records = voteItemService.getRecordsById(voteItem.getId());
+                voteItem.setRecords(records);
+                totalCount += records;
+            }
+            modelMap.put("items", voteItems);
+            modelMap.put("totalCount", totalCount);
+            modelMap.put("return", true);
+        } else {
+            List<VoteItem> voteItems = voteItemService.getVoteItems();
+            int totalCount = 0;
+            for (VoteItem voteItem : voteItems) {
+                totalCount += voteItem.getRecords();
+            }
+            modelMap.put("items", voteItems);
+            modelMap.put("totalCount", totalCount);
+            modelMap.put("return", false);
+        }
         return "show";
-
     }
 
     @RequestMapping(value = "test", method = {RequestMethod.GET})

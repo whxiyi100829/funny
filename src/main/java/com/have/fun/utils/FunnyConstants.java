@@ -1,5 +1,6 @@
 package com.have.fun.utils;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 
 /**
@@ -8,6 +9,7 @@ import com.google.common.base.Splitter;
  * </pre>
  */
 public class FunnyConstants {
-    public static final Splitter SPLITTER = Splitter.on("#").trimResults();
-    public static final String ITEM_FILE = "item.txt";
+    public static final Splitter SPLITTER  = Splitter.on("#").trimResults();
+    public static final String   ITEM_FILE = "item.txt";
+    public static final Joiner   JOINER   = Joiner.on("#");
 }

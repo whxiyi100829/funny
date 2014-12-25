@@ -28,6 +28,16 @@ public class VoteItemServiceImpl implements VoteItemService{
         return resourceContext.getVoteItems();
     }
 
+    @Override
+    public Integer getRecordsById(Integer id) {
+        return resourceContext.getRecordsById(id);
+    }
+
+    @Override
+    public void increaseRecords(Integer chkId) {
+        resourceContext.increase(chkId);
+    }
+
     public static void main(String[] args) {
         VoteItemService voteItemService = new VoteItemServiceImpl();
         System.out.println(voteItemService.getVoteItems());

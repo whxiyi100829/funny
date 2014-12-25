@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ include file="/common/taglibs.jsp" %>
 
-<c:set var="pageTitle" value="电影列表" scope="page"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +8,8 @@
     <%@ include file="/common/head-inner.jsp" %>
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
-    <link href="/static/css/bootstrap.css" rel="stylesheet" media="screen">
-    <link href="/static/css/app.css" rel="stylesheet">
+    <link href="${ctx}/static/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="${ctx}/static/css/app.css" rel="stylesheet">
     <style>
         #category li {
             width: 24%;
@@ -25,13 +24,12 @@
     <div class="container bodycontainer">
         <div class="vote-tips">
             <h3 class="title">标题</h3>
-
             <p>xxxx 2014-12-24 12:21</p>
         </div>
 
         <div class="vote-desc">
             <p>
-                <img src="/static/images/global_DE42B97A-1B81-A336-A344-55775E49AEE2_src.jpg"/>
+                <img src="${ctx}/static/images/global_DE42B97A-1B81-A336-A344-55775E49AEE2_src.jpg"/>
             </p>
 
             <p>
@@ -40,27 +38,40 @@
         </div>
 
         <div class="vote-content">
-            <form action="">
-                <table>
-                    <tr>
-                        <td>
-                            <label class="radio" for="radio-0"><input name="radio-select" id="radio-0" type="radio" value="0"/>A
-                                一支锐利的长矛</label>
-                        </td>
-                    </tr>
+            <form action="${ctx}/show" method="post">
+                <div class="row">
+                    <hr>
+                    <c:set var="clazz" value="${fn:split('progress-bar-success,progress-bar-info,progress-bar-warning,progress-bar-danger,progress-bar-success', ',')}"/>
                     <c:forEach var="item" items="${items}">
-                        <tr>
-                            <td>
-                                <label class="radio" for="radio-${item.id}"><input name="radio-select" id="radio-${item.id}" type="radio" value="1"/>${item.name}</label>
-                            </td>
-                        </tr>
+                        <div class="col-lg-12">
+                                <div class="input-group">
+                                      <span class="input-group-addon">
+                                        <input type="checkbox" id="checkbox-${item.id}" name="voteChecks" value="${item.id}"/>
+                                      </span>
+                                    <label class="form-control" for="checkbox-${item.id}">${item.name}</label>
+                                </div>
+                            <c:if test="${return}" >
+                            <div class="progress" style="height: 25px;">
+                                <div class="progress-bar ${clazz[item.id]}" role="progressbar"
+                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                                     style='width: <fmt:formatNumber value="${item.records/totalCount}" type="percent"></fmt:formatNumber> ;'>
+                                </div> <span style="text-align: center; margin-left: 10px;"> ${item.records}票</span> <a href="${item.link}" style="margin-left: 5px; text-align: right">下载</a>
+                            </div>
+                            <p>${item.funnyMsg}</p>
+                           </c:if>
+                        </div>
                     </c:forEach>
-                    <tr>
-                        <td>
+                    <c:choose>
+                        <c:when test="${return}">
+                            <span>谢谢您的参与</span>
+                        </c:when>
+                        <c:otherwise>
                             <button type="submit" class="btn btn-primary">Submit</button>
-                        </td>
-                    </tr>
-                </table>
+                        </c:otherwise>
+                    </c:choose>
+
+                </div>
+
             </form>
         </div>
     </div>
